@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Shop.Models.OrderExtended>
+
+@{
+    ViewBag.Title = "Просмотр заказов";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Просмотр заказов</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Название телефона</th>
+            <th>Производитель телефона</th>
+            <th>Год выпуска телефона</th>
+            <th>Цена телефона</th>
+            <th>Иня покупателя</th>
+            <th>Адрес покупателя</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeviceName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Company)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    @Html.ActionLink("Назад на главную", "Index", "Home")
+</div>

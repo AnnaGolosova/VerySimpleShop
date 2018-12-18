@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Shop.Models.Device>
+
+@{
+    ViewBag.Title = "Главная";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.ErrorMessage
+    </div>
+}
+
+@if (ViewBag.SuccessMessage != null)
+{
+    <div class="alert alert-success" role="alert">
+        @ViewBag.SuccessMessage
+    </div>
+}
+<h2>Список товаров</h2>
+
+<p>
+    @Html.ActionLink("Добавить товар", "CreateDevice")
+</p>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>
+            Модель телефона
+        </th>
+        <th>
+            Производитель телефона
+        </th>
+        <th>
+            Год выпуска телефона
+        </th>
+        <th>
+            Цена
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Company)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.ActionLink("Редактировать", "DeviceDetails", new { deviceId = item.Id }) |
+                    @Html.ActionLink("Удалить(Все заказы будут удалены)", "DeleteDevice", new { deviceId = item.Id }) |
+                    @Html.ActionLink("Заказать", "Add", "Order", new { deviceId = item.Id }, null)
+                </td>
+            </tr>
+        }
+        </tbody>
+</table>
